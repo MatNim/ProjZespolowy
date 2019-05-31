@@ -9,6 +9,7 @@ W konsoli nalezy wpisac:
 pip install virtualenv  
 Nastepnie w miejscu w ktorym ma zostac utworzone wirtualne srodowisko nalezy w konsoli wpisac  
 $ virtualenv -p /usr/bin/python3.6 zespolowy_env  
+wirtualne srodowisko nalezy uruchomic komenda $source zespolowy_env/bin/activate przeniesc requirements.txt do folderu z srodowiskiem i zainstalowac wymagane pakiety komenda $pip install -r requirements.txt
 Tutorial w formie wideo:  
 https://www.youtube.com/watch?v=N5vscPTWKOk
 
