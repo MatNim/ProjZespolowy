@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1><b>Informacje o koncie</b></h1><hr>
+<div style="font-size: 24px; width:600px">
+    <div style="background-color: none;padding-bottom:10px;padding-top:10px">
+        <b>Imie:</b> {{current_user.imie}}
+    </div>
+    <div style="background-color: white;padding-bottom:10px;padding-top:10px">
+        <b>Nazwisko:</b> {{current_user.nazwisko}}
+    </div>
+    <div style="background-color: none;padding-bottom:10px;padding-top:10px">
+        <b>Rodzaj konta:</b>
+        {% if current_user.rodzaj_konta==1 %}
+        {{"Student"}}
+        {% elif current_user.rodzaj_konta==2 %}
+        {{"Prowadzacy"}}
+        {% elif current_user.rodzaj_konta==3 %}
+        {{"Pracownik firmy"}}
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

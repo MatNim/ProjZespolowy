@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Lista Projektow:</h1>
+
+{% for result in result %}
+       <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+            <p class="article-content">{{'Tytul projektu: '}}{{result.tytul}}<br></p>
+
+            <h2><a class="article-title" href="#">{{''}}</a></h2>
+            {% if result.status == 1 %}
+            <p class="article-content">{{'Status: '}}{{'Zgloszony'}}</p>
+            {% elif result.status == 2 %}
+             <p class="article-content">{{'Status: '}}{{'Wolny'}}</p>
+            {% elif result.status ==3 %}
+             <p class="article-content">{{'Status: '}}{{'Zarezerwowany'}}</p>
+            {% elif result.status == 4 %}
+            <p class="article-content">{{'Status: '}}{{'Zajety'}}</p>
+            {% endif %}
+            <p class="article-content">{{'Zapisane grupy do projektu: '}}{{result.ilosc_zapisanych_grup}}</p>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('deleteProject', projekt_id=result.projekt_id) }}">Usun</a>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('updateProject', projekt_id=result.projekt_id) }}">Modyfikuj</a>
+          </div>
+</article>
+
+{% endfor %}
+{% endblock content %}

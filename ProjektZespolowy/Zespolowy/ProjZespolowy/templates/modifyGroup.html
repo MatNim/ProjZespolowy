@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    <p class="article-content">{{"liczba osob w grupie:"}} {{grupa.liczba_czlonkow}}</p>
+    <p class="article-content">{{"Temat projektu: "}}{{projekt.tytul}}</p>
+    {% if projekt.projekt_id!=11 %}
+        {% if grupa.stan_zapisu==2 %}
+        <p class="article-content">{{"Status zapisu do projektu: W trakcie rezerwacji"}}</p>
+        {% elif grupa.stan_zapisu==3 %}
+        <p class="article-content">{{"Status zapisu do projektu: Zaakceptowany"}}</p>
+        {% endif %}
+    {% endif %}
+
+    <p class="article-content">{{"Dane kontaktowe grupy: ""\n"}}{{grupa.opis}}</p>
+</div>
+{% if grupa.projektProjekt_id ==11%}
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+                {{ form.delete(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+{% endif %}
+{% endblock content %}

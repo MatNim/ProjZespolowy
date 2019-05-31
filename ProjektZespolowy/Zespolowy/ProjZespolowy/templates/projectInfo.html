@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block content %}
+<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('showProjects')}}">wróć..</a>
+<div style="background-color:white;">
+    <div style="margin:10px">
+        Tytul: {{projekt.tytul}}
+        <hr>
+    </div>
+    <div style="margin:10px">
+        Opis projektu:
+        <br><br>
+        {{projekt.opis}}
+        <hr>
+    </div>
+    <div style="margin:10px">
+        Firma:
+        {{firma.nazwa}}
+        <hr>
+    </div>
+    <div style="margin:10px">
+        Maksymalna liczba studentow:
+        {{projekt.max_studentow}}
+        <hr>
+    </div>
+    <div style="margin:10px">
+        Mininalna liczba studentow:
+        {{projekt.min_studentow}}
+        <hr>
+    </div>
+    <div style="margin:10px">
+        Naklad czasu:
+        {{projekt.naklad_czasu}}
+        <hr>
+    </div>
+    <div style="margin:10px">
+        Dodatkowy komentarz:
+        {{projekt.komentarz}}
+        <hr>
+    </div>
+
+
+
+
+</div>
+
+     {% if accountType == 1 %}
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('sendreserveproject', projekt_id=projekt.projekt_id) }}">Zglos swoja grupe</a>
+     {% endif %}
+{% endblock content %}

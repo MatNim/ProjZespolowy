@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1><b>Informacje o koncie</b></h1><hr>
+<div style="font-size: 24px; width:600px">
+    <div style="background-color: none;padding-bottom:10px;padding-top:10px">
+        <b>Imie:</b> {{current_user.imie}}
+    </div>
+    <div style="background-color: white;padding-bottom:10px;padding-top:10px">
+        <b>Nazwisko:</b> {{current_user.nazwisko}}
+    </div>
+    <div style="background-color: none;padding-bottom:10px;padding-top:10px">
+        <b>Rodzaj konta:</b> {{current_user.rodzaj_konta}}
+    </div>
+    <div style="background-color: white;padding-bottom:10px; margin-top:10px">
+        <b>Stan konta:</b>
+        {% if current_user.stan_konta==1 %}
+        {{"Aktywne"}}
+        {% else %}
+        {{"Nieaktywne"}}
+        {% endif %}
+    </div>
+    <div style="background-color: none;padding-bottom:10px;padding-top:10px">
+        <b>Id osoby:</b> {{current_user.id}}
+    </div >
+    <div style="background-color: white;padding-bottom:10px;margin-top:10px">
+        <b>Nazwa firmy:</b> {{firma.nazwa}}
+    </div>
+    <div style="background-color: none;padding-bottom:10px;padding-top:10px">
+        <b>Czy firma aktywna:</b> {{firma.czy_aktywna}}
+    </div>
+    <div style="background-color: white;padding-bottom:10px;padding-top:10px">
+        <b>Glowny reprezentant firmy:</b> {{firma_pracownik.czy_glowny}}
+    </div>
+</div>
+{% endblock content %}

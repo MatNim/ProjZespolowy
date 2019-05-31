@@ -1,0 +1,132 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+
+    .table tr
+    {
+    cursor: pointer;
+    }
+    .hiddenRow
+    {
+    padding: 0 4px !important;
+    background-color: #eeeeee;
+    font-size: 13px;
+    }
+    .hiddenRow:hover
+    {
+    }
+
+</style>
+<div style="margin:15px">
+</div>
+
+<table class="table table-hover">
+  <thead class="bg-steel" style="width: 100%; color:white">
+    <tr>
+      <th scope="col">Temat</th>
+       <th scope="col">Firma</th>
+      <th scope="col">Status</th>
+      <th scope="col">Max osob</th>
+      <th scope="col">Wolne grupy</th>
+      <th scope="col"> </th>
+    </tr>
+  </thead>
+{% for result in result %}
+
+  {%if result.projekt_id !=11 and result.status!=4%}
+
+
+  <tbody>
+  <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
+      <th scope="row">{{result.tytul}}</th>
+ <td>{% for firma in firma%}
+      {%if firma.firma_id == result.firmafirma_id%}
+          {{firma.nazwa}}
+            {%endif%}
+{% endfor %}
+        </td>
+      <td>
+        {% if result.status == 1 %}
+            {{'Zgloszony'}}
+            {% elif result.status == 2 %}
+            {{'Wolny'}}
+            {% elif result.status == 3 %}
+            {{'Zarezerwowany'}}
+            {% elif result.status == 4 %}
+            {{'Zajety'}}
+            {% endif %}
+      </td>
+
+      <td>{{result.max_studentow}}</td>
+      <td>{{result.max_grup-result.ilosc_zapisanych_grup}}</td>
+      <td>  <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('projectInfo', projekt_id=result.projekt_id) }}">wiecej..</a></td>
+    </tr>
+          <tr>
+            <td colspan="6" class="hiddenRow"><div class="accordian-body collapse" id="demo1"> {{result.opis}} </div> </td>
+        </tr>
+
+  </tbody>
+
+  {%endif%}
+
+{% endfor %}
+{% for result in result %}
+  {%if result.projekt_id !=11 and result.status==4%}
+
+
+  <tbody>
+  <tr data-toggle="collapse" data-target="#demo3" class="accordion-toggle">
+      <th scope="row">{{result.tytul}}</th>
+       <td>{% for firma in firma%}
+         {%if firma.firma_id == result.firmafirma_id%}
+          {{firma.nazwa}}
+            {%endif%}
+            {% endfor %}
+        </td>
+      <td>
+        {% if result.status == 1 %}
+            {{'Zgloszony'}}
+            {% elif result.status == 2 %}
+            {{'Wolny'}}
+            {% elif result.status == 3 %}
+            {{'Zarezerwowany'}}
+            {% elif result.status == 4 %}
+            {{'Zajety'}}
+            {% endif %}
+      </td>
+      <td>{{result.max_studentow}}</td>
+      <td>{{result.max_grup-result.ilosc_zapisanych_grup}}</td>
+      <td>  <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('projectInfo', projekt_id=result.projekt_id) }}">wiecej..</a></td>
+    </tr>
+          <tr>
+            <td colspan="6" class="hiddenRow"><div class="accordian-body collapse" id="demo3">{{result.opis}} </div> </td>
+        </tr>
+
+  </tbody>
+
+  {%endif%}
+
+{% endfor %}
+</table>
+
+<script>
+    $('.breakrow').click(function(){
+            $('#tableMain').on('click', 'tr.breakrow',function(){
+                $(this).nextUntil('tr.breakrow').slideToggle(200);
+            });
+        });
+    $('.accordian-body').on('show.bs.collapse', function () {
+    $(this).closest("table")
+        .find(".collapse.in")
+        .not(this)
+        .collapse('toggle')
+
+     function toggle(){
+
+     }
+})
+</script>
+
+
+
+{% endblock content %}

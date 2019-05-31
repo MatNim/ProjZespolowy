@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Lista niezweryfikowanych kont</h1>
+
+{% for result in result %}
+       <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+            <p class="article-content">{{result.imie}} {{result.nazwisko}} {{result.email}}</p>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('verify', osoba_id=result.id) }}">Akceptuj</a>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('delete', osoba_id=result.id) }}">Usun</a>
+            </div>
+</article>
+
+{% endfor %}
+{% endblock content %}
