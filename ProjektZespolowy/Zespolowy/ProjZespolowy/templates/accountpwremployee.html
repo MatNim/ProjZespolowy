@@ -10,25 +10,10 @@
     </div>
     <div style="background-color: none;padding-bottom:10px;padding-top:10px">
         <b>Rodzaj konta:</b>
-        {{"Pracownik Firmy"}}
-    </div>
-    <div style="background-color: white;padding-bottom:10px; margin-top:10px">
-        <b>Stan konta:</b>
-        {% if current_user.stan_konta==1 %}
-        {{"Aktywne"}}
-        {% else %}
-        {{"Nieaktywne"}}
-        {% endif %}
-    </div>
-    <div style="background-color: none;padding-bottom:10px;margin-top:10px">
-        <b>Nazwa firmy:</b> {{firma.nazwa}}
+        {{"Pracownik pwr"}}
     </div>
     <div style="background-color: white;padding-bottom:10px;padding-top:10px">
-        <b>Glowny reprezentant firmy:</b>   {% if firma_pracownik.czy_glowny==1 %}
-        {{"Tak"}}
-        {% else %}
-        {{"Nie"}}
-        {% endif %}
+        <b>Grupy czekajace na akceptacje:</b> {{grupy}}
     </div>
 </div>
 {% endblock content %}

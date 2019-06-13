@@ -39,4 +39,7 @@
         </form>
     </div>
 {% endif %}
+{% if grupa.projektProjekt_id !=11%}
+<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('sendcancelproject', projekt_id=projekt.projekt_id) }}">Wypisz sie z projektu</a>
+{% endif %}
 {% endblock content %}

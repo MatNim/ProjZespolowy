@@ -23,7 +23,7 @@
         <hr>
     </div>
     <div style="margin:10px">
-        Mininalna liczba studentow:
+        Minimalna liczba studentow:
         {{projekt.min_studentow}}
         <hr>
     </div>
@@ -37,13 +37,29 @@
         {{projekt.komentarz}}
         <hr>
     </div>
-
-
+     {% if projekt.opiekun_nazwisko!=None %}
+     <div style="margin:10px">
+        Opiekun pwr:
+       {{projekt.opiekun_imie}} {{projekt.opiekun_nazwisko }}
+        <hr>
+    </div>
+    {% else %}
+    <div style="margin:10px">
+        Opiekun pwr:
+       Brak
+        <hr>
+    </div>
+    {% endif %}
 
 
 </div>
-
      {% if accountType == 1 %}
     <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('sendreserveproject', projekt_id=projekt.projekt_id) }}">Zglos swoja grupe</a>
+     {% endif %}
+      {% if accountType == 2 and projekt.opiekunosoba_id==None %}
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('signpwremployeetoproject', projekt_id=projekt.projekt_id) }}">Zostan opiekunem projektu</a>
+     {% endif %}
+      {% if accountType == 2 and projekt.opiekunosoba_id==current_user.id%}
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('signoutpwremployeetoproject', projekt_id=projekt.projekt_id) }}">Wypisz sie jako opiekun projektu</a>
      {% endif %}
 {% endblock content %}

@@ -10,13 +10,13 @@
     </div>
     <div style="background-color: none;padding-bottom:10px;padding-top:10px">
         <b>Rodzaj konta:</b>
-        {% if current_user.rodzaj_konta==1 %}
-        {{"Student"}}
-        {% elif current_user.rodzaj_konta==2 %}
-        {{"Prowadzacy"}}
-        {% elif current_user.rodzaj_konta==3 %}
-        {{"Pracownik firmy"}}
-        {% endif %}
+            Admin PWR
+    </div>
+     <div style="background-color: white;padding-bottom:10px;padding-top:10px">
+        <b>Grupy czekajace na akceptacje:</b> {{grupy}}
+    </div>
+    <div style="background-color: none;padding-bottom:10px;padding-top:10px">
+        <b>Pracownicy firm czekajacy na akceptacje:</b> {{firmy}}
     </div>
 </div>
 {% endblock content %}

@@ -7,7 +7,9 @@
           <div class="media-body">
             <div class="article-metadata">
             <p class="article-content">{{'Tytul: '}}{{projekt.tytul}} <br>{{'Maksymalna liczba grup: '}}{{projekt.max_grup}}<br> {{'Zapisana liczba grup: '}}{{projekt.ilosc_zapisanych_grup}}</p>
-
+             {% if current_user.rodzaj_konta==2%}
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('signoutpwremployeetoproject', projekt_id=projekt.projekt_id) }}">Wypisz sie jako opiekun projektu</a>
+            {%endif%}
             </div>
             {% for grupa in grupa %}
               {% if grupa.projektProjekt_id==projekt.projekt_id and grupa.stan_zapisu==2%}
@@ -15,6 +17,9 @@
                <p class="article-content">{{"Sklad grupy: ""\n"}}{{grupa.opis}}</p>
              <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('acceptGroupToProject', projekt_id=projekt.projekt_id,grupa_id=grupa.grupa_id) }}">Akceptuj</a>
             <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('cancelGroupToProject',projekt_id=projekt.projekt_id,grupa_id=grupa.grupa_id) }}">Anuluj</a>
+           {% elif grupa.projektProjekt_id==projekt.projekt_id%}
+            <p class="article-content">{{"Sklad grupy: ""\n"}}{{grupa.opis}}</p>
+
               {% endif %}
                {% endfor %}
           </div>

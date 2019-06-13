@@ -1,5 +1,5 @@
 body {
-  background: #fafafa;
+  background: url("tlo.jpg"), linear-gradient(rgba(123, 140, 160, 1), rgba(123, 140, 160, 1)) repeat-x;
   color: #333333;
   margin-top: 5rem;
 }

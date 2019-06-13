@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1><b>Informacje o firmie</b></h1><hr>
+<div style="font-size: 24px; width:600px">
+    <div style="background-color: none;padding-bottom:10px;padding-top:10px">
+        <b>Nazwa:</b> {{firma.nazwa}}
+    </div>
+     <div style="background-color: white;padding-bottom:10px;padding-top:10px">
+        <b>Opis:</b>
+       {% if firma.opis==None %}
+       {{""}}
+       {% else %}
+       {{firma.opis}}
+       {% endif %}
+    </div>
+    <div style="background-color: none;padding-bottom:10px;padding-top:10px">
+        <b>Email:</b>
+        {% if firma.email==None %}
+        {{""}}
+        {% else %}
+        {{firma.email}}
+        {% endif %}
+    </div>
+    <div style="background-color: white;padding-bottom:10px;padding-top:10px">
+        <b>Miejscowość:</b>
+        {% if firma.miejscowosc==None %}
+        {{""}}
+        {% else %}
+        {{firma.miejscowosc}}
+        {% endif %}
+    </div>
+    <div style="background-color: none;padding-bottom:10px;padding-top:10px">
+        <b>Ulica:</b>
+        {% if firma.ulica==None %}
+        {{""}}
+        {% else %}
+        {{firma.ulica}}
+        {% endif %}
+    </div>
+    <div style="background-color: white;padding-bottom:10px;padding-top:10px">
+        <b>Adres budynku:</b>
+        {% if firma.numer_budynku==None %}
+        {{""}}
+        {% else %}
+        {{firma.numer_budynku}}
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}
+

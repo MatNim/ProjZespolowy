@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Lista niezweryfikowanych kont</h1>
+
+{% for result in result %}
+       <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+            <p class="article-content">{{result.imie}} {{result.nazwisko}} {{result.email}}</p>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('verify', osoba_id=result.id) }}">Akceptuj</a>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1", id={{result.email}} href="{{ url_for('delete', osoba_id=result.id) }}">Usun</a>
+                            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#{{result.imie}}">
+            Usun
+            </button>
+
+            </div>
+    <!-- Modal -->
+<div class="modal fade" id={{result.imie}} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>-->
+      </div>
+      <div class="modal-body">
+        Czy napewno?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+       <button type="button" class="btn btn-success success" id={{result.nazwisko}}>Zatwierdz</button>
+      </div>
+      {{result.nazwisko}}
+      {{result.email}}
+      {{result.imie}}
+    </div>
+  </div>
+</div>
+</article>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script>
+$('#{{result.nazwisko}}').click(function(){
+    // Perform the action after modal confirm button is clicked.
+
+    $('#{{result.email}}').click(); // submitting the form
+});
+</script>
+{% endfor %}
+
+
+
+
+{% endblock content %}

@@ -5,7 +5,7 @@
         <form method="POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Modyfikowanie projektu</legend>
+                <legend class="border-bottom mb-4">{{legend}}</legend>
                 <div class="form-group">
                     {{ form.title.label(class="form-control-label") }}
                     {% if form.title.errors %}
@@ -101,23 +101,18 @@
                         {{ form.max_groups(class="form-control form-control-lg") }}
                     {% endif %}
                 </div>
-                <div class="form-group">
-                    {{ form.semester.label(class="form-control-label") }}
-                    {% if form.semester.errors %}
-                        {{ form.semester(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.semester.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.semester(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
             </fieldset>
             <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
+                {{ form.submit(class="btn btn-outline-info", id=projekt.tytul) }}
             </div>
+              {% if projekt.status==1 %}
+             <div class="form-group">
+                {{ form.save(class="btn btn-outline-info") }}
+            </div>
+            {% endif %}
+                      <!-- Button trigger modal -->
         </form>
     </div>
+
+
 {% endblock content %}

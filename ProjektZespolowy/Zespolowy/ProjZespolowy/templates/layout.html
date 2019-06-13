@@ -26,7 +26,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
+              <a class="nav-item nav-link" href="{{ url_for('home') }}"><img class="m-1" src="{{ url_for('static',filename='bored.png') }}"style="height:35px;weight:35px" alt="Home"></a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
@@ -36,16 +36,19 @@
                 <a class="nav-item nav-link" href="{{ url_for('logout') }}">Wyloguj</a>
                 {% endif %}
                 {% if current_user.rodzaj_konta==2 %}
-                <a class="nav-item nav-link" href="{{ url_for('accountpwr') }}">Konto</a>
+                <a class="nav-item nav-link" href="{{ url_for('accountpwremployee') }}">Konto</a>
                 <a class="nav-item nav-link" href="{{ url_for('logout') }}">Wyloguj</a>
                 {% endif %}
                 {% if current_user.rodzaj_konta==1 %}
                 <a class="nav-item nav-link" href="{{ url_for('accountstudent') }}">Konto</a>
                 <a class="nav-item nav-link" href="{{ url_for('logout') }}">Wyloguj</a>
                 {% endif %}
+                {% if current_user.rodzaj_konta==4 %}
+                <a class="nav-item nav-link" href="{{ url_for('accountpwr') }}">Konto</a>
+                <a class="nav-item nav-link" href="{{ url_for('logout') }}">Wyloguj</a>
+                {% endif %}
               {% else %}
               <a class="nav-item nav-link" href="{{ url_for('login') }}">Logowanie</a>
-              <a class="nav-item nav-link" href="{{ url_for('register') }}">Rejestracja</a>
               {% endif %}
             </div>
           </div>
@@ -75,17 +78,19 @@
                 <li class="list-group-item list-group-item-light" href="{{ url_for('account') }}"></a>
                 <a class="nav-item nav-link" href="{{ url_for('account') }}">Konto</a>
                 <li class="list-group-item list-group-item-light" href="{{ url_for('account') }}"></a>
+                <a class="nav-item nav-link" href="{{ url_for('companyInfo') }}">Firma</a>
+                <li class="list-group-item list-group-item-light" href="{{ url_for('account') }}"></a>
                 <a class="nav-item nav-link" href="{{ url_for('AddProject') }}">Dodaj Projekt</a>
                 <li class="list-group-item list-group-item-light" href="{{ url_for('account') }}"></a>
-                <a class="nav-item nav-link" href="{{ url_for('choseProjectToModify') }}">Modyfikuj projekty</a>
+                <a class="nav-item nav-link" href="{{ url_for('choseProjectToModify') }}">Przegladaj i modyfikuj projekty</a>
                 <li class="list-group-item list-group-item-light" href="{{ url_for('choseProjectToModify') }}"></a>
-                <a class="nav-item nav-link" href="{{ url_for('accountstudent') }}">Modyfikuj profil</a>
-                <li class="list-group-item list-group-item-light" href="{{ url_for('account') }}"></a>
-                <a class="nav-item nav-link" href="{{ url_for('accountstudent') }}">Modyfikuj dane firmy</a>
+                <a class="nav-item nav-link" href="{{ url_for('updateEmployeeAccount', pracownik_id=current_user.id) }}">Modyfikuj profil</a>
+                <li class="list-group-item list-group-item-light" href="{{ url_for('updateEmployeeAccount', pracownik_id=current_user.id) }}"></a>
+                <a class="nav-item nav-link" href="{{ url_for('updateCompany', pracownik_id=current_user.id) }}">Modyfikuj dane firmy</a>
                 <li class="list-group-item list-group-item-light" href="{{ url_for('showProjects') }}"></a>
                 <a class="nav-item nav-link" href="{{ url_for('showProjects') }}">Przegladanie projektow</a>
         {% endif %}
-        {% if current_user.rodzaj_konta==2 %}
+        {% if current_user.rodzaj_konta==4 %}
           <div class="col-md-4">
           <div class="content-section">
             <h3>Menu</h3>
@@ -100,7 +105,19 @@
                 <li class="list-group-item list-group-item-light" href="{{ url_for('showProjects') }}"></a>
                 <a class="nav-item nav-link" href="{{ url_for('showProjects') }}">Przegladanie projektow</a>
         {% endif %}
-
+  {% if current_user.rodzaj_konta==2 %}
+          <div class="col-md-4">
+          <div class="content-section">
+            <h3>Menu</h3>
+            <p class='text-muted'>
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-light" href="{{ url_for('accountpwremployee') }}"></a>
+                <a class="nav-item nav-link" href="{{ url_for('accountpwremployee') }}">Konto</a>
+                <li class="list-group-item list-group-item-light" href="{{ url_for('accountpwr') }}"></a>
+                <a class="nav-item nav-link" href="{{ url_for('showPendingGroups') }}">Akceptacja grup do projektu</a>
+                <li class="list-group-item list-group-item-light" href="{{ url_for('showProjects') }}"></a>
+                <a class="nav-item nav-link" href="{{ url_for('showProjects') }}">Przegladanie projektow</a>
+        {% endif %}
         {% if current_user.rodzaj_konta==1 %}
           <div class="col-md-4">
           <div class="content-section">
@@ -109,12 +126,10 @@
               <ul class="list-group">
                 <li class="list-group-item list-group-item-light" href="{{ url_for('accountstudent') }}"></a>
                 <a class="nav-item nav-link" href="{{ url_for('accountstudent') }}">Konto</a>
-                <li class="list-group-item list-group-item-light" href="{{ url_for('accountstudent') }}"></a>
-                <a class="nav-item nav-link" href="{{ url_for('showProjects') }}">Zapisz grupe do projektu</a>
                 <li class="list-group-item list-group-item-light" href="{{ url_for('modifyGroup') }}"></a>
                 <a class="nav-item nav-link" href="{{ url_for('modifyGroup') }}">Modyfikuj grupe</a>
                 <li class="list-group-item list-group-item-light" href="{{ url_for('showProjects') }}"></a>
-                <a class="nav-item nav-link" href="{{ url_for('showProjects') }}">Przegladanie projektow</a>
+                <a class="nav-item nav-link" href="{{ url_for('showProjects') }}">Przegladanie i zapis do projektow</a>
         {% endif %}
 
               </ul>
@@ -127,8 +142,12 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- bootbox.js at 4.4.0 -->
+<script src="https://rawgit.com/makeusabrew/bootbox/f3a04a57877cab071738de558581fbc91812dce9/bootbox.js"></script>
 </body>
 </html>
